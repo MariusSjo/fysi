@@ -9,6 +9,12 @@ import Advertisement from "./components/advertisement/Advertisement.tsx";
 import Footer from "./components/footer/Footer.tsx";
 // @ts-ignore
 import Landingpage from "./pages/Landingpage.js";
+// @ts-ignore
+import ReactGA from 'react-ga';
+import React from "react";
+
+const TRACKING_ID = "G-MH7S63YRVM";
+ReactGA.initialize(TRACKING_ID);
 
 WebFont.load({ google: { families: ["Roboto:300,400,500"] } });
 
@@ -22,14 +28,14 @@ function App() {
       <Advertisement />
       <Routes>
         <Route path="/" element={<Landingpage />} />
-        <Route
+        {/* <Route
           path="/om_oss"
           element={
             <div>
-              <p> Fysi for alle!</p>{" "}
+              <p> Side under</p>{" "}
             </div>
           }
-        />
+        /> */}
       </Routes>
       <Advertisement />
       <Footer />

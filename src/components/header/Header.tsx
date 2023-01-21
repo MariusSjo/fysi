@@ -14,7 +14,7 @@ declare function require(path: string)
 const fysiLogo: string = require('../../images/fysiLogo.png')
 const sponsorlogo: string = require('../../images/sponsorLogo.png')
 
-const pages = [{ title: 'Hjem', navigation: '/' }, { title: 'Arkiv', navigation: '/arkiv' }, { title: 'Informasjon', navigation: '/om_oss' }];
+const pages = [/*{ title: 'Hjem', navigation: '/' },  { title: 'Arkiv', navigation: '/arkiv' }, { title: 'Informasjon', navigation: '/om_oss' } */];
 
 const Header = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
