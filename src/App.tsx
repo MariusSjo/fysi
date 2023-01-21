@@ -22,6 +22,7 @@ WebFont.load({ google: { families: ["Roboto:300,400,500"] } });
 
 
 function App() {
+  ReactGA.pageview(window.location.pathname);
   return (
     <div className="App">
       <Header />
