@@ -1,0 +1,61 @@
+.cardContainer {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-items: center;
+	width: 80%;
+	margin: auto;
+	justify-content: space-around;
+}
+
+.cardContainer > * {
+	margin: 10px;
+	min-width: 230px;
+	max-width: 25vw;
+}
+
+.info {
+	display: flex;
+	width: 80%;
+	margin: auto;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.info > * {
+	width: 30vw;
+	min-width: 200px;
+}
+
+.podcast_intro {
+	justify-items: center;
+	margin: auto;
+	width: 87vw;
+}
+
+@media only screen and (max-width: 1200px) {
+	.cardContainer > * {
+		min-width: 39vw;
+		margin-left: 0.5vw;
+		margin-right: 0.5vw;
+		margin-top: 10px;
+		justify-content: space-around;
+	}
+}
+
+@media only screen and (max-width: 900px) {
+	.info > * {
+		width: 87vw;
+		display: block;
+		margin: auto;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.cardContainer > * {
+		min-width: 87vw;
+	}
+	.card-description {
+		display: none;
+	}
+}
