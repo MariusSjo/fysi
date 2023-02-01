@@ -17,8 +17,8 @@ const fysiBanner = require('../images/fysi_info-removebg.png');
 export default function Landingpage() {
 	const [episodes, setEpisodes] = useState([]);
 
-	var client_id = '9af22d6418ce49738b35235ab74db93e';
-	var client_secret = 'e0dde8a6105949f1a42b7aa880b83c09';
+	var client_id = process.env.REACT_APP_CLIENT_ID;
+	var client_secret = process.env.REACT_APP_CLIENT_SECRET;
 
 	const authOptions = {
 		url: 'https://accounts.spotify.com/api/token',

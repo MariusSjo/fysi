@@ -1,5 +1,7 @@
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
+// @ts-ignore
+import { Routes, Route } from "react-router-dom";
+// @ts-ignore
 import WebFont from "webfontloader";
 // @ts-ignore
 import Header from "./components/header/Header.tsx";
@@ -11,6 +13,7 @@ import Footer from "./components/footer/Footer.tsx";
 import Landingpage from "./pages/Landingpage.js";
 // @ts-ignore
 import ReactGA from 'react-ga';
+// @ts-ignore
 import React from "react";
 
 const TRACKING_ID = "G-MH7S63YRVM";
@@ -26,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Advertisement />
+      {/* <Advertisement /> */}
       <Routes>
         <Route path="/" element={<Landingpage />} />
         {/* <Route
@@ -38,7 +41,7 @@ function App() {
           }
         /> */}
       </Routes>
-      <Advertisement />
+      {/* <Advertisement /> */}
       <Footer />
     </div>
 
