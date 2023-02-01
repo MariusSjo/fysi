@@ -1,6 +1,6 @@
 import "./App.css";
 // @ts-ignore
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 // @ts-ignore
 import WebFont from "webfontloader";
 // @ts-ignore
