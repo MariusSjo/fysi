@@ -34,32 +34,32 @@ const Episode = ({ episode }: any) => {
       </div>
       <Space direction="vertical" size={16}>
         <Card title="Deltagere" style={{ width: 300 }}>
-          <Title level={5}>Gjest:</Title>{episode?.guest.map((p: any) => {
-            return <div key={p.Name} >
+          <Title level={5}>Gjest:</Title>{episode?.guest.map((guest: any) => {
+            return <div key={guest?.Name} >
               <Avatar.Group
                 maxCount={3}
                 maxPopoverTrigger="click"
                 size="large"
                 maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
               >
-                { <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(p.image).url()} />}
+                {guest && <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(guest?.image).url()} />}
               </Avatar.Group>
-              <br /><Paragraph>{...p.Name}</Paragraph>
+              <br /><Paragraph>{guest?.Name}</Paragraph>
             </div>
               })}
-              <Title level={5}>Vert:</Title>{episode?.host.map((p: any) => {
+              <Title level={5}>Vert:</Title>{episode?.host.map((host: any) => {
                 return (
-                  <div key={p.Name} >
+                  <div key={host?.Name} >
                     <Avatar.Group
                       maxCount={3}
                       maxPopoverTrigger="click"
                       size="large"
                       maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
                     >
-                      <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(p.HostImage)
-                        .url()} />
+                      {<Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(host?.HostImage)
+                        .url()} />}
                     </Avatar.Group>
-                    <br /><Paragraph>{...p.Name}</Paragraph>
+                    <br /><Paragraph>{host?.Name}</Paragraph>
                   </div>)
           })}
         </Card>
