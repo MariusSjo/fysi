@@ -26,9 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return  <Layout>
-         <GoogleAnalytics trackPageViews />
+  return <Layout>
+    <GoogleAnalytics trackPageViews />
     <Component {...pageProps} />
   </Layout>
-  
+
 }
