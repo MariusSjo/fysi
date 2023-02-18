@@ -17,56 +17,57 @@ const Episode = ({ episode }: any) => {
       </Head>
       <div className='responsive'>
         <div>
-        <Title>{episode?.title}</Title>
-        <Paragraph>{episode?.description}</Paragraph>
-        {episode?.sources && <Title level={5}> Kilder: </Title>}
-        {episode?.sources && episode?.sources.map((s:any, i:number) =>{
-            if (s != null) {return (
-            <Link key={s?.Title} href={s?.Citation} target="_blank">
-              {i+1}. {s?.Title} <br/><br/>
-            </Link>)
+          <Title>{episode?.title}</Title>
+          <Paragraph>{episode?.description}</Paragraph>
+          {episode?.sources && <Title level={5}> Kilder: </Title>}
+          {episode?.sources && episode?.sources.map((s: any, i: number) => {
+            if (s != null) {
+              return (
+                <Link key={s?.Title} href={s?.Citation} target="_blank">
+                  {i + 1}. {s?.Title} <br /><br />
+                </Link>)
             }
-            else{
-              return(<div/>)
+            else {
+              return (<div />)
             }
           }
-        )}
-      </div>
-      <Space direction="vertical" size={16}>
-        <Card title="Deltagere" style={{ width: 300 }}>
-          <Title level={5}>Gjest:</Title>{episode?.guest.map((p: any) => {
-            return <div key={p.Name} >
-              <Avatar.Group
-                maxCount={3}
-                maxPopoverTrigger="click"
-                size="large"
-                maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
-              >
-                { <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(p.image).url()} />}
-              </Avatar.Group>
-              <br /><Paragraph>{...p.Name}</Paragraph>
-            </div>
-              })}
-              <Title level={5}>Vert:</Title>{episode?.host.map((p: any) => {
-                return (
-                  <div key={p.Name} >
-                    <Avatar.Group
-                      maxCount={3}
-                      maxPopoverTrigger="click"
-                      size="large"
-                      maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
-                    >
-                      <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(p.HostImage)
-                        .url()} />
-                    </Avatar.Group>
-                    <br /><Paragraph>{...p.Name}</Paragraph>
-                  </div>)
-          })}
-        </Card>
-      </Space>
+          )}
+        </div>
+        <Space direction="vertical" size={16}>
+          <Card title="Deltagere" style={{ width: 300 }}>
+            <Title level={5}>Gjest:</Title>{episode?.guest.map((guest: any) => {
+              return <div key={guest?.Name} >
+                <Avatar.Group
+                  maxCount={3}
+                  maxPopoverTrigger="click"
+                  size="large"
+                  maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
+                >
+                  {guest && <Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(guest?.image).url()} />}
+                </Avatar.Group>
+                <br /><Paragraph>{guest?.Name}</Paragraph>
+              </div>
+            })}
+            <Title level={5}>Vert:</Title>{episode?.host.map((host: any) => {
+              return (
+                <div key={host?.Name} >
+                  <Avatar.Group
+                    maxCount={3}
+                    maxPopoverTrigger="click"
+                    size="large"
+                    maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
+                  >
+                    {<Avatar style={{ backgroundColor: '#4d76f0' }} src={urlFor(host?.HostImage)
+                      .url()} />}
+                  </Avatar.Group>
+                  <br /><Paragraph>{host?.Name}</Paragraph>
+                </div>)
+            })}
+          </Card>
+        </Space>
       </div>
 
-        <Title level={4}> Hør episoden her:</Title>
+      <Title level={4}> Hør episoden her:</Title>
       {episode?.EmbedCode && <div className="text-container" dangerouslySetInnerHTML={{ __html: episode.EmbedCode }} />}
     </article>
   )

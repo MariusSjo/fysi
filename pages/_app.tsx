@@ -5,11 +5,13 @@ import type { AppProps } from 'next/app'
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import { useEffect } from 'react';
 import { useRouter } from 'next/router'
+import { clarity } from 'react-microsoft-clarity';
 import * as ga from '../lib/ga'
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
+    clarity.init(`${process.env.NEXT_PUBLIC_CLARITY}`);
     const handleRouteChange = (url: any) => {
       ga.pageview(url)
     }
@@ -24,9 +26,9 @@ export default function App({ Component, pageProps }: AppProps) {
     }
   }, [router.events])
 
-  return  <Layout>
-         <GoogleAnalytics trackPageViews />
+  return <Layout>
+    <GoogleAnalytics trackPageViews />
     <Component {...pageProps} />
   </Layout>
-  
+
 }
