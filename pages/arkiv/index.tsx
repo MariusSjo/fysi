@@ -1,4 +1,4 @@
-import client from '../client';
+import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
 import { Card, Typography } from 'antd';
@@ -8,7 +8,7 @@ import React from 'react';
 import Link from 'next/link';
 const { Meta } = Card;
 
-export default function EpisodeList({ episodes }: any) {
+function EpisodeList({ episodes }: any) {
   function urlFor(source: string): any {
     return imageUrlBuilder(client).image(source);
   }
@@ -70,3 +70,5 @@ export async function getStaticProps(context: { params: { page?: 0 | undefined }
     },
   };
 }
+
+export default EpisodeList

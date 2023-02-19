@@ -15,25 +15,21 @@ const items: MenuProps['items'] = [
     label: 'Arkiv',
     key: '/arkiv',
     icon: <AudioOutlined />,
-  },
-  /* {
-    label: 'Om oss',
-    key: '/om-oss',
-    icon: <TeamOutlined />
-  }, */
+  }
 ];
 
 const Navbar = () => {
   const [current, setCurrent] = useState('/');
-const onClick: MenuProps['onClick'] = (e) => {
+  const onClick: MenuProps['onClick'] = (e) => {
     setCurrent(e.key)
     router.push(e.key)
   };
-  
+
   return (
     <>
-    <Menu className="navBarMenu" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items}/>
+      <Menu className="navBarMenu" onClick={onClick} selectedKeys={[current]} mode="horizontal" items={items} />
     </>
-  )}  
+  )
+}
 
 export default Navbar;

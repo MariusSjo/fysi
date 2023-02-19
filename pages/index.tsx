@@ -16,7 +16,7 @@ const contentStyle: React.CSSProperties = {
   background: '#364d79',
 };
 
-export async function getStaticProps(context: { params: { page?: 0 | undefined } }) {
+export async function getStaticProps() {
   const episodes = await client.fetch(`
   *[_type == "episode"]
   | order(releaseDate desc) | order(_createdAt desc)
@@ -75,7 +75,7 @@ function Index({ episodes }: any) {
           {episodes &&
             episodes.map((episode: any) => {
               return (
-                <div>
+                <div key={episode.slug}>
                   <Link href={episode.slug} key={episode.slug}>
                     <Card
                       hoverable

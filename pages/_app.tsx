@@ -11,7 +11,9 @@ import * as ga from '../lib/ga'
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
   useEffect(() => {
-    clarity.init(`${process.env.NEXT_PUBLIC_CLARITY}`);
+    if (!window.location.host.includes('localhost')) {
+      clarity.init(`${process.env.NEXT_PUBLIC_CLARITY}`);
+    }
     const handleRouteChange = (url: any) => {
       ga.pageview(url)
     }
