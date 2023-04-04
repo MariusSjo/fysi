@@ -28,6 +28,7 @@ export async function getStaticProps() {
 
 export default function omOss({physiotherapists}: any) {
     physiotherapists = physiotherapists.filter((physiotherapist: any)=> physiotherapist.Name !== "Kristine Green Sandvik" )
+    physiotherapists = physiotherapists.filter((physiotherapist: any)=> physiotherapist.HostImage !== null )
 
     return (
         <Space className="content" direction="vertical" size="middle" style={{ display: 'flex', textAlign: "center", maxWidth: 800 }}>
