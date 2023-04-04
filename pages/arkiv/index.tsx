@@ -1,12 +1,13 @@
 import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
-import { Card, Typography } from 'antd';
+import { Card, Typography, Input } from 'antd';
 import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
 import React from 'react';
 import Link from 'next/link';
 const { Meta } = Card;
+const { Search } = Input;
 
 function EpisodeList({ episodes }: any) {
   function urlFor(source: string): any {
@@ -20,20 +21,26 @@ function EpisodeList({ episodes }: any) {
     return title.substring(0, 67) + '...';
   }
 
+  function filterEpisodes(e: React.ChangeEvent<HTMLInputElement>) {
+    console.log(e.target.value);
+    console.log(episodes.filter((episode: any) => episode.title.toLowerCase().includes(e.target.value.toLowerCase())));
+  }
+
   return (
     <Space className="content" direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Head>
         <title>Arkiv</title>
       </Head>
       <Title style={{ paddingTop: 20 }}>Episoder</Title>
+      <Search placeholder="input search text" style={{ paddingLeft: 20, paddingRight: 20 }} onChange={(e)=> filterEpisodes(e)} enterButton="Search" size="large" />
       <Space
         size="middle"
         style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         {episodes &&
           episodes.map((episode: any) => {
             return (
-              <div>
-                <Link href={episode.slug} key={episode.slug}>
+              <div key={episode.slug}>
+                <Link href={episode.slug}>
                   <Card
                     hoverable
                     style={{ width: 300, minHeight: '400px' }}
@@ -62,7 +69,7 @@ export async function getStaticProps(context: { params: { page?: 0 | undefined }
       "slug": slug.current,
       "guest": guest[] -> {image},
       "image": PosterImage
-    }[0...60]
+    }[0...100]
   `);
   return {
     props: {
