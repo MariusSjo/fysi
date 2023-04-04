@@ -53,6 +53,10 @@ body {
   }
 }
 
+.ant-btn-lg{
+  box-shadow: none !important;
+}
+
 @media (max-width: 600px){
   .responsive{
     flex-direction: column;

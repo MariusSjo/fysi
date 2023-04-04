@@ -33,7 +33,7 @@ function EpisodeList({ episodes }: any) {
         <title>Arkiv</title>
       </Head>
       <Title style={{ paddingTop: 20 }}>Episoder</Title>
-      <Search placeholder="input search text" style={{ paddingLeft: 20, paddingRight: 20 }} onChange={(e)=> filterEpisodes(e)} enterButton="Search" size="large" />
+      <Search placeholder="input search text" id='search-button' style={{ paddingLeft: 20, paddingRight: 20 }} onChange={(e)=> filterEpisodes(e)} enterButton="Search" size="large" />
       <Space
         size="middle"
         style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
