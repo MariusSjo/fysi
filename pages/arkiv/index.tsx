@@ -4,12 +4,13 @@ import Head from 'next/head';
 import { Card, Typography, Input } from 'antd';
 import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 const { Meta } = Card;
 const { Search } = Input;
 
 function EpisodeList({ episodes }: any) {
+  const [filtered, setFiltered] = useState(episodes);
   function urlFor(source: string): any {
     return imageUrlBuilder(client).image(source);
   }
@@ -23,7 +24,7 @@ function EpisodeList({ episodes }: any) {
 
   function filterEpisodes(e: React.ChangeEvent<HTMLInputElement>) {
     console.log(e.target.value);
-    console.log(episodes.filter((episode: any) => episode.title.toLowerCase().includes(e.target.value.toLowerCase())));
+    setFiltered(episodes.filter((episode: any) => episode.title.toLowerCase().includes(e.target.value.toLowerCase())));
   }
 
   return (
@@ -37,7 +38,7 @@ function EpisodeList({ episodes }: any) {
         size="middle"
         style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         {episodes &&
-          episodes.map((episode: any) => {
+          filtered.map((episode: any) => {
             return (
               <div key={episode.slug}>
                 <Link href={episode.slug}>
