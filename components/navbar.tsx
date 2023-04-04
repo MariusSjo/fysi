@@ -15,6 +15,10 @@ const items: MenuProps['items'] = [
     label: 'Arkiv',
     key: '/arkiv',
     icon: <AudioOutlined />,
+  },{
+    label: 'Om oss',
+    key: '/om-oss',
+    icon: <TeamOutlined />,
   }
 ];
 
