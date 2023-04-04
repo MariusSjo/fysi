@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AudioOutlined, HomeOutlined, TeamOutlined } from '@ant-design/icons';
+import { AudioOutlined, HomeOutlined, TeamOutlined, MailOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import router from 'next/router';
@@ -19,6 +19,11 @@ const items: MenuProps['items'] = [
     label: 'Om oss',
     key: '/om-oss',
     icon: <TeamOutlined />,
+  }
+  ,{
+    label: 'Kontakt oss',
+    key: '/kontakt',
+    icon: <MailOutlined />,
   }
 ];
 
