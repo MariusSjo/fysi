@@ -23,7 +23,6 @@ function EpisodeList({ episodes }: any) {
   }
 
   function filterEpisodes(e: React.ChangeEvent<HTMLInputElement>) {
-    console.log(e.target.value);
     setFiltered(episodes.filter((episode: any) => episode.title.toLowerCase().includes(e.target.value.toLowerCase())));
   }
 
