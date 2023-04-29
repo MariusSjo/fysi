@@ -6,7 +6,26 @@ jobs:
     steps:
       - name: Checkout 🚚
         uses: actions/checkout@v3
-        
+
+      - name: 'Create env file'
+        run: |
+          touch .env
+          echo NEXT_PUBLIC_CLARITY=---${{ secrets.NEXT_PUBLIC_CLARITY }} >> .env
+          echo NEXT_PUBLIC_GA_MEASUREMENT_ID=----${{ secrets.NEXT_PUBLIC_GA_MEASUREMENT_ID }} >> .env
+          echo NEXT_PUBLIC_SANITY=${{ secrets.NEXT_PUBLIC_SANITY }} >> .env
+          echo NEXT_PUBLIC_SENDGRID_API_KEY=--${{ secrets.NEXT_PUBLIC_SENDGRID_API_KEY }} >> .env
+          echo NEXT_PUBLIC_SMTP_CODE=--${{ secrets.NEXT_PUBLIC_SMTP_CODE }} >> .env
+          cat .env
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+
+      - name: Install dependencies 📦
+        run: npm install
+
+
       - name: Cypress run 🧪
         uses: cypress-io/github-action@v5
         with:
