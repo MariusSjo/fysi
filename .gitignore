@@ -38,3 +38,11 @@ next-env.d.ts
 out
 .env.local
 sendgrid.env
+
+# Sentry Auth Token
+.sentryclirc
+
+
+cypress/downloads
+cypress/fixtures
+cypress/support

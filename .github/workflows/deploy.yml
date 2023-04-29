@@ -11,6 +11,14 @@ jobs:
     steps:
       - name: Checkout code 🚚
         uses: actions/checkout@v3
+        
+      - name: Cypress run 🧪
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm run dev
+          wait-on: "http://localhost:3000"
+          wait-on-timeout: 120
+          command: npx cypress run
 
       - name: 'Create env file'
         run: |
