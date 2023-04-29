@@ -46,3 +46,4 @@ sendgrid.env
 cypress/downloads
 cypress/fixtures
 cypress/support
+cypress/videos
