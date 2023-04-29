@@ -29,5 +29,5 @@ jobs:
           server: ftp.domeneshop.no
           username: fysi
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./out
+          local-dir: ./out/
           server-dir: ./
