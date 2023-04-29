@@ -1,6 +1,7 @@
 describe('template spec', () => {
   it('passes', () => {
     cy.visit('http://localhost:3000')
+    cy.wait(800)
     cy.contains('Hjem').click()
     cy.wait(800)
     cy.get(':nth-child(1) > :nth-child(1) > a > .ant-card > .ant-card-cover > img').click()
