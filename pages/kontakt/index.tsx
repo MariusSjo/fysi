@@ -11,7 +11,7 @@ const layout = {
 };
 
 /* eslint-disable no-template-curly-in-string */
-const validateMessages = {
+/* const validateMessages = {
   required: '${label} is required!',
   types: {
     email: '${label} er ikke en gyldig e-postadresse!',
@@ -36,7 +36,7 @@ let data = {
 fetch('/api/contact', {
   method: 'POST',
   headers: {
-    'Accept': 'application/json, text/plain, */*',
+    'Accept': 'application/json, text/plain, ',
     'Content-Type': 'application/json'
   },
   body: JSON.stringify(data)
@@ -47,7 +47,7 @@ fetch('/api/contact', {
   }
 })
 }
-
+ */
 
 
 
@@ -66,7 +66,11 @@ export default function kontakt() {
         Send oss en <a href="mailto:post@fysi.no">e-post</a> da vel! Om lenken ikke funker kan du sende en mail til <br/> post@fysi.no
       </Paragraph>
       
-      {/* <Form
+      
+    </Space>
+  );
+}
+/* <Form
         {...layout}
         name="nest-messages"
         onFinish={onFinish}
@@ -90,7 +94,4 @@ export default function kontakt() {
             Send e-post
           </Button>
         </Form.Item>
-      </Form> */}
-    </Space>
-  );
-}
+      </Form> */
