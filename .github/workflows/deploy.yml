@@ -12,7 +12,7 @@ jobs:
       - name: Checkout code 🚚
         uses: actions/checkout@v3
 
-       - name: 'Create env file'
+      - name: 'Create env file'
         run: |
           touch .env
           echo NEXT_PUBLIC_CLARITY=${{ secrets.NEXT_PUBLIC_CLARITY }} >> .env
