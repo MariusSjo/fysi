@@ -1,5 +1,11 @@
-name: End-to-end tests
-on: [push]
+name: Isolated e2e test 🧪
+
+on:
+  push:
+    branches:    
+      - '**'     # pushes to any branch'
+      - '!main'   # excludes master
+
 jobs:
   cypress-run: 
     runs-on: ubuntu-20.04
