@@ -20,6 +20,12 @@ jobs:
           echo NEXT_PUBLIC_SENDGRID_API_KEY=${{ secrets.NEXT_PUBLIC_SENDGRID_API_KEY }} >> .env
           echo NEXT_PUBLIC_SMTP_CODE=${{ secrets.NEXT_PUBLIC_SMTP_CODE }} >> .env
           cat .env
+      - name: Create sentryauth file 📡
+        run: |
+          touch .sentryclirc
+          echo [auth] >> .env
+          echo token=${{ secrets.SENTRYCLIRCTOKEN }} >> .env
+          cat .sentryclirc
       - name: Set up Node.js 👋
         uses: actions/setup-node@v2
         with:
