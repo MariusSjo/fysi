@@ -20,7 +20,7 @@
     "antd": "^5.1.7",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
-    "next": "13.1.6",
+    "next": "13.5.4",
     "nextjs-google-analytics": "^2.3.0",
     "nodemailer": "^6.9.1",
     "react": "18.2.0",
