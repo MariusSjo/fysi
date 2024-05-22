@@ -4,7 +4,7 @@ import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
 import React, { useEffect, useState } from 'react';
 import OpenAI from 'openai';
-import KiForm from './kiForm'
+import KiForm from './KiForm'
 
 function FysiKI() {
   return (
