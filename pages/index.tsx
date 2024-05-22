@@ -1,10 +1,12 @@
-import React from 'react';
-import { Card, Carousel, Image, Space, Typography } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Card, Carousel, Image, Space, Typography, Input } from 'antd';
 import client from '@/client';
 import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
-import { relative } from 'path';
 import Head from 'next/head';
+import OpenAI from 'openai';
+
+const { Search } = Input;
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
 
@@ -15,25 +17,6 @@ const contentStyle: React.CSSProperties = {
   textAlign: 'center',
   background: '#364d79',
 };
-
-export async function getStaticProps() {
-  const episodes = await client.fetch(`
-  *[_type == "episode"]
-  | order(releaseDate desc) | order(_createdAt desc)
-  {
-    "title":Title, 
-    "description": Description, 
-    "slug": slug.current,
-    "guest": guest[] -> {image},
-    "image": PosterImage
-  }[0...3]
-`);
-  return {
-    props: {
-      episodes,
-    },
-  };
-}
 
 function urlFor(source: string): any {
   return imageUrlBuilder(client).image(source);
@@ -98,29 +81,33 @@ function Index({ episodes }: any) {
         <Space
           size="large"
           style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
-          <Link href="https://open.spotify.com/show/2XZ654XhzGKbtkwgSlPk2K?si=F7HFSt3QQ-KlT_Sr3YkH2w">
+          <Link href="https://open.spotify.com/show/2XZ654XhzGt_F7HFSt3QQ-KlT_Sr3YkH2w">
             <Card
               size="small"
               hoverable
-              cover={<img alt="social" style={{ width: '200px' }} src={'/spotify.png'} />}></Card>
+              cover={<img alt="social" style={{ width: '200px' }} src={'/spotify.png'} />}
+            ></Card>
           </Link>
           <Link href="https://www.facebook.com/fysi0">
             <Card
               size="small"
               hoverable
-              cover={<img alt="social" style={{ width: '200px' }} src={'/facebook.png'} />}></Card>
+              cover={<img alt="social" style={{ width: '200px' }} src={'/facebook.png'} />}
+            ></Card>
           </Link>
           <Link href="https://www.instagram.com/fysi.no/">
             <Card
               size="small"
               hoverable
-              cover={<img alt="social" style={{ width: '200px' }} src={'/instagram.png'} />}></Card>
+              cover={<img alt="social" style={{ width: '200px' }} src={'/instagram.png'} />}
+            ></Card>
           </Link>
           <Link href="https://www.linkedin.com/company/fysi-no/">
             <Card
               size="small"
               hoverable
-              cover={<img alt="social" style={{ width: '200px' }} src={'/linkedin.png'} />}></Card>
+              cover={<img alt="social" style={{ width: '200px' }} src={'/linkedin.png'} />}
+            ></Card>
           </Link>
         </Space>
       </div>
