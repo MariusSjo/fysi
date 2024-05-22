@@ -6,8 +6,6 @@ import OpenAI from 'openai';
 const { TextArea } = Input;
 const { Title, Paragraph } = Typography;
 
-const REQUEST_LIMIT = 2;
-
 export default function KiForm() {
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [loading, setLoading] = useState<boolean>(false);
@@ -17,44 +15,12 @@ export default function KiForm() {
     const [painlocation, setPainlocation] = useState<string>('');
     const [history, setHistory] = useState<string>('');
     const [provoking, setProvoking] = useState<string>('');
-    const [requestLimitReached, setRequestLimitReached] = useState<boolean>(false);
 
     const openai = new OpenAI({
         apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
         dangerouslyAllowBrowser: true,
     });
-
-    useEffect(() => {
-        checkRequestLimit();
-    }, []);
-
-    function checkRequestLimit() {
-        const requestInfo = JSON.parse(localStorage.getItem('requestInfo') || '{}');
-        const today = new Date().toISOString().split('T')[0];
-
-        if (requestInfo.date === today && requestInfo.count >= REQUEST_LIMIT) {
-            setRequestLimitReached(true);
-        } else if (requestInfo.date !== today) {
-            localStorage.setItem('requestInfo', JSON.stringify({ date: today, count: 0 }));
-        }
-    }
-
-    function updateRequestCount() {
-        const requestInfo = JSON.parse(localStorage.getItem('requestInfo') || '{}');
-        const today = new Date().toISOString().split('T')[0];
-
-        if (requestInfo.date === today) {
-            requestInfo.count += 1;
-        } else {
-            requestInfo.date = today;
-            requestInfo.count = 1;
-        }
-
-        localStorage.setItem('requestInfo', JSON.stringify(requestInfo));
-        if (requestInfo.count >= REQUEST_LIMIT) {
-            setRequestLimitReached(true);
-        }
-    }
+    
 
     async function fetchChatResponse(e: any) {
         if (e) {
@@ -74,8 +40,6 @@ export default function KiForm() {
 
             const messageContent = completion.choices[0].message.content;
             setResponse(messageContent);
-            console.log(messageContent);
-            updateRequestCount();
         } catch (error) {
             console.error('Error fetching chat response:', error);
         } finally {
@@ -100,8 +64,6 @@ export default function KiForm() {
 
             const messageContent = completion.choices[0].message.content;
             setWorkoutPlan(messageContent);
-            console.log(messageContent);
-            updateRequestCount();
         } catch (error) {
             console.error('Error fetching workout plan:', error);
         } finally {
@@ -123,7 +85,7 @@ export default function KiForm() {
         }
     }
 
-    if (requestLimitReached) {
+    if (false) {
         return (
             <>
                 <Title style={{ fontSize: '1.5em' }}>Request Limit Reached</Title>
