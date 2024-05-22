@@ -20,6 +20,7 @@ jobs:
           echo NEXT_PUBLIC_SANITY=${{ secrets.NEXT_PUBLIC_SANITY }} >> .env
           echo NEXT_PUBLIC_SENDGRID_API_KEY=${{ secrets.NEXT_PUBLIC_SENDGRID_API_KEY }} >> .env
           echo NEXT_PUBLIC_SMTP_CODE=${{ secrets.NEXT_PUBLIC_SMTP_CODE }} >> .env
+          echo NEXT_PUBLIC_OPENAI_API_KEY=${{ secrets.NEXT_PUBLIC_OPENAI_API_KEY }} >> .env
           cat .env
       - name: Create sentryauth file 📡
         run: |
