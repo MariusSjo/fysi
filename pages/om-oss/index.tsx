@@ -1,5 +1,5 @@
 import client from "@/client";
-import { Card, Space, Typography } from "antd";
+import { Card, Image, Space, Typography } from "antd";
 import imageUrlBuilder from '@sanity/image-url';
 import Head from "next/head";
 const {Meta} = Card;
@@ -31,17 +31,26 @@ export default function omOss({physiotherapists}: any) {
     physiotherapists = physiotherapists.filter((physiotherapist: any)=> physiotherapist.HostImage !== null )
 
     return (
+      <>
         <Space className="content" direction="vertical" size="middle" style={{ display: 'flex', textAlign: "center", maxWidth: 800 }}>
             <Head>
                 <title>Om oss</title>
             </Head>
-            <Title style={{ paddingTop: 20 }}>Episoder</Title>
+            <Title style={{ paddingTop: 20 }}>Fysi Kollektivet</Title>
+            <div
+          style={{ display: 'flex', flexDirection:'row', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+            <div style={{ width: '50%', minWidth:'400px' }}>
             <Paragraph>
                 Fysi er et idealistisk iniativ som er startet av Fredrik Sjøberg. Fysi driftes av engasjerte fysioterapeuter, turnusfysioer og fysiostudenter. <br /><br />
                 Vi er Fysi kollektivet.<br /><br />
                 Målet er å dele evidensbasert og klinisk anvennelig kunnskap for å forbedre håndteringen av pasienter. Vår målgruppe er fysioterapeuter og andre helsearbeidere.<br /><br />
                 De jobber på sykehusene, i kommunene og som privatpraktiserende med og uten driftstilskudd. De jobber med barn, traumer, pasienter med muskel- og skjelettplager, nevro, lungesyke og friske som vil forebygge. De som hjelper oss fra vi er små til vi blir bestemødre og bestefedre.<br /><br />
             </Paragraph>
+            </div>
+            <div style={{ width: '50%', minWidth:'400px' }}>
+            <Image src={'/rygg.png'} />
+            </div>
+            </div>
             <Space
           size="large"
           style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
@@ -62,5 +71,6 @@ export default function omOss({physiotherapists}: any) {
                 )})}
             </Space>
         </Space>
+        </>
     );
 }
