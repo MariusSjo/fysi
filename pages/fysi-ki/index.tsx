@@ -10,7 +10,8 @@ function FysiKI() {
   return (
     <>
     <Space className="content" direction="vertical" size="middle" style={{ display: 'flex', textAlign: "center", maxWidth: 800 }}>
-    <Title style={{ paddingLeft: 20, paddingTop: 20 , fontSize: '1.7em' }}>Ask FysiAI</Title>
+    <Title style={{ paddingLeft: 20, paddingTop: 20 , fontSize: '1.7em' }}>Spør FysiAI</Title>
+    <Typography> Viktig informasjon: Diagnoser og treningsprogram er kun veiledende, men skal kun brukes i samråd med profesjonellt helsepersonell. KI-en er i Betafase og skal brukes i kombinasjon med sunn fornuft. </Typography>
       <KiForm></KiForm>
     </Space>
     </>

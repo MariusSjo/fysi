@@ -1,9 +1,8 @@
 import React from 'react';
-import { Card, Carousel, Image, Space, Typography } from 'antd';
+import { Card, Carousel, Avatar,Badge, Space, Typography } from 'antd';
 import client from '@/client';
 import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
-import { relative } from 'path';
 import Head from 'next/head';
 const { Title, Paragraph } = Typography;
 const { Meta } = Card;
@@ -21,13 +20,13 @@ export async function getStaticProps() {
   *[_type == "episode"]
   | order(releaseDate desc) | order(_createdAt desc)
   {
-    "title":Title, 
-    "description": Description, 
+    "title": Title,
+    "description": Description,
     "slug": slug.current,
     "guest": guest[] -> {image},
     "image": PosterImage
   }[0...3]
-`);
+  `);
   return {
     props: {
       episodes,
@@ -62,9 +61,9 @@ function Index({ episodes }: any) {
         </div>
 
         <Carousel autoplay effect="fade">
-          <img src="/hero1.png"></img>
-          <img src="/hero2.png"></img>
-          <img src="/hero3.png"></img>
+          <img src="/hero1.png" />
+          <img src="/hero2.png" />
+          <img src="/hero3.png" />
         </Carousel>
       </div>
       <div className="content">
@@ -91,9 +90,22 @@ function Index({ episodes }: any) {
               );
             })}
         </Space>
+        <div style={{ marginTop: '20px', display: 'flex', maxWidth:'1030px',margin: 'auto' }}>
+        <Link href="/fysi-ki">
+        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
+    <Badge.Ribbon text="Ny!">
+      <Card title="Prøv ut Fysi ki" size="small">
+      <Meta
+                 avatar={<Avatar  src={'/fysi_gpt.png'} />}
+                description="Den kan diagnostisere og opprette treningsprogram. Her er det viktig å vite at den er i Betafase og burde kun brukes i samspill med helsepersonell."
+              />
+      </Card>
+    </Badge.Ribbon>
+    </Space>
+    </Link>
+      </div>
         <Title style={{ textAlign: 'left', paddingTop: '3%' }}>
-          {' '}
-          Sjekk oss ut på sosiale medier:{' '}
+          Sjekk oss ut på sosiale medier:
         </Title>
         <Space
           size="large"

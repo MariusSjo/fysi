@@ -28,8 +28,8 @@ export default function KiForm() {
         }
         setLoading(true); // Start loading
         const newChat: any = [
-            { role: 'system', content: 'You are a helpful assistant.' },
-            { role: 'user', content: `Provide me a diagnose based on the painlocation: ${painlocation}, the history of the problem: ${history}, and how I can provoke/relieve the injury: ${provoking}.` }
+            { role: 'system', content: 'Du er en hjelpsom fysioterapiassistent.' },
+            { role: 'user', content: `Gi meg en diagnose basert på smerteområdet: ${painlocation}, problemetshistorie: ${history}, og hvordan jeg kan provosere/lindre skaden: ${provoking}.` }
         ];
 
         try {
@@ -41,7 +41,7 @@ export default function KiForm() {
             const messageContent = completion.choices[0].message.content;
             setResponse(messageContent);
         } catch (error) {
-            console.error('Error fetching chat response:', error);
+            console.error('Feil ved henting av chatrespons:', error);
         } finally {
             setLoading(false); // Stop loading
         }
@@ -52,8 +52,8 @@ export default function KiForm() {
 
         setWorkoutLoading(true); // Start loading
         const newChat: any = [
-            { role: 'system', content: 'You are a helpful assistant.' },
-            { role: 'user', content: `Based on the following diagnosis, provide a workout plan: ${response}` }
+            { role: 'system', content: 'Du er en hjelpsom fysioterapiassistent.' },
+            { role: 'user', content: `Basert på følgende diagnose, gi meg en treningsplan: ${response}` }
         ];
 
         try {
@@ -65,7 +65,7 @@ export default function KiForm() {
             const messageContent = completion.choices[0].message.content;
             setWorkoutPlan(messageContent);
         } catch (error) {
-            console.error('Error fetching workout plan:', error);
+            console.error('Feil ved henting av treningsplan:', error);
         } finally {
             setWorkoutLoading(false); // Stop loading
         }
@@ -88,8 +88,8 @@ export default function KiForm() {
     if (false) {
         return (
             <>
-                <Title style={{ fontSize: '1.5em' }}>Request Limit Reached</Title>
-                <Paragraph>You have reached the maximum number of requests for today. Please come back tomorrow.</Paragraph>
+                <Title style={{ fontSize: '1.5em' }}>Forespørselsgrense nådd</Title>
+                <Paragraph>Du har nådd maks antall forespørsler for i dag. Vennligst kom tilbake i morgen.</Paragraph>
             </>
         );
     }
@@ -101,33 +101,33 @@ export default function KiForm() {
                     fetchChatResponse(e);
                     setSubmitted(true);
                 }}>
-                    <Title style={{ fontSize: '1.3em' }}>Describe the pain, where is it located?</Title>
-                    <Input required showCount maxLength={30} type="text" placeholder="On my right elbow" onChange={(e) => filterEpisodes(e, "painlocation")} />
-                    <Title style={{ fontSize: '1.3em' }}>History / What happened?</Title>
+                    <Title style={{ fontSize: '1.3em' }}>Beskriv smerten, hvor er den lokalisert?</Title>
+                    <Input required showCount maxLength={30} type="text" placeholder="På høyre albue" onChange={(e) => filterEpisodes(e, "painlocation")} />
+                    <Title style={{ fontSize: '1.3em' }}>Historie / Hva skjedde?</Title>
                     <TextArea
                         showCount
                         maxLength={100}
                         required
                         onChange={(e) => filterEpisodes(e, "history")}
-                        placeholder="I played tennis the other day, and after the exercise my elbow hurts."
+                        placeholder="Jeg spilte tennis her om dagen, og etter treningen gjør albuen vondt."
                         style={{ height: 120, resize: 'none' }}
                     />
-                    <Title style={{ fontSize: '1.3em' }}>Provoking/relieving factors?</Title>
+                    <Title style={{ fontSize: '1.3em' }}>Provoserende/lindrende faktorer?</Title>
                     <TextArea
                         showCount
                         maxLength={100}
                         required
                         onChange={(e) => filterEpisodes(e, "provoking")}
-                        placeholder="I feel the pain intensifies when I bend my arm."
+                        placeholder="Jeg føler smerten intensiveres når jeg bøyer armen."
                         style={{ height: 120, resize: 'none' }}
                     />
                     <Title style={{ paddingTop: 20, fontSize: '1.3em' }}>
-                        Click to ask FysiAI to diagnose
+                        Klikk for å be FysiAI om diagnose
                     </Title>
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Send inn
                     </Button>
-                    <Paragraph> After setting a diagnosis we can start generating exercises</Paragraph>
+                    <Paragraph> Etter å ha satt en diagnose kan vi begynne å generere øvelser</Paragraph>
                 </form>
             </>
         )
@@ -136,26 +136,26 @@ export default function KiForm() {
     return (
         <>
             {loading ? (
-                <Spin tip="Loading...">
+                <Spin tip="Laster...">
                     <div style={{ height: '100vh' }} />
                 </Spin>
             ) : (
                 <>
-                    <Title style={{ fontSize: '1.5em' }}>Diagnosis</Title>
+                    <Title style={{ fontSize: '1.5em' }}>Diagnose</Title>
                     <Paragraph>{response}</Paragraph>
                     {!workoutPlan && (
                         <Button type="primary" onClick={fetchWorkoutPlan} disabled={workoutLoading}>
-                            Generate Workout Plan
+                            Generer Treningsplan
                         </Button>
                     )}
                     {workoutLoading ? (
-                        <Spin tip="Loading...">
+                        <Spin tip="Laster...">
                             <div style={{ height: '100vh' }} />
                         </Spin>
                     ) : (
                         workoutPlan && (
                             <>
-                                <Title style={{ fontSize: '1.5em', marginTop: '20px' }}>Workout Plan</Title>
+                                <Title style={{ fontSize: '1.5em', marginTop: '20px' }}>Treningsplan</Title>
                                 <Paragraph>{workoutPlan}</Paragraph>
                             </>
                         )
