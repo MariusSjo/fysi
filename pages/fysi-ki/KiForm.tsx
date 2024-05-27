@@ -102,7 +102,7 @@ export default function KiForm() {
                     setSubmitted(true);
                 }}>
                     <Title style={{ fontSize: '1.3em' }}>Beskriv smerten, hvor er den lokalisert?</Title>
-                    <Input required showCount maxLength={30} type="text" placeholder="På høyre albue" onChange={(e) => filterEpisodes(e, "painlocation")} />
+                    <Input required showCount maxLength={30} type="text" placeholder="I høyre albue" onChange={(e) => filterEpisodes(e, "painlocation")} />
                     <Title style={{ fontSize: '1.3em' }}>Historie / Hva skjedde?</Title>
                     <TextArea
                         showCount
@@ -122,7 +122,7 @@ export default function KiForm() {
                         style={{ height: 120, resize: 'none' }}
                     />
                     <Title style={{ paddingTop: 20, fontSize: '1.3em' }}>
-                        Klikk for å be FysiAI om diagnose
+                        Klikk for å be FysiKI om diagnose
                     </Title>
                     <Button type="primary" htmlType="submit">
                         Send inn
