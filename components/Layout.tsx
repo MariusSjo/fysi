@@ -46,7 +46,7 @@ export default function Layout({ children }: any) {
                     <Col  className="gutter-row" span={8}>
                     </Col>
                             <Col  className="gutter-row" span={8}>
-                            <Paragraph>Fysi©2023</Paragraph>
+                            <Paragraph>Fysi©2019</Paragraph>
                             </Col>
                             <Col  className="gutter-row" span={8}>
                                 <Paragraph className="desktop">Sjekk oss ut på sosiale medier:</Paragraph>
