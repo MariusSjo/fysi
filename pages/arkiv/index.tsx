@@ -96,7 +96,7 @@ function EpisodeList({ episodes }: any) {
                         }
                         description={
                           <Paragraph 
-                            ellipsis={{ rows: 3 }} 
+                            ellipsis={{ rows: 4 }} 
                             style={{ 
                               marginTop: 0, 
                               color: '#4A5568',

@@ -103,7 +103,7 @@ function Index({ episodes }: any) {
                         }
                         description={
                           <Paragraph 
-                            ellipsis={{ rows: 2 }} 
+                            ellipsis={{ rows: 3 }} 
                             style={{ 
                               marginTop: 0, 
                               color: '#4A5568',
