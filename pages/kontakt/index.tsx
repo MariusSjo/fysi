@@ -1,54 +1,10 @@
-import { useState } from 'react';
-import { Card, Space, Typography, Button, Form, Input, message } from "antd";
-import { MailOutlined, LinkedinOutlined, InstagramOutlined, SendOutlined } from '@ant-design/icons';
+import { Card, Space, Typography, Button } from "antd";
+import { MailOutlined, LinkedinOutlined, InstagramOutlined } from '@ant-design/icons';
 import Head from "next/head";
 
 const { Paragraph, Title } = Typography;
-const { TextArea } = Input;
 
 export default function Kontakt() {
-  const [form] = Form.useForm();
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = async (values: any) => {
-    setLoading(true);
-    
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          access_key: '49bceae2-c7c3-4c72-9e69-2db79dbafe47', // Web3Forms access key
-          name: values.name,
-          email: values.email,
-          phone: values.phone || '',
-          subject: values.subject,
-          message: values.message,
-          from_name: 'Fysi Kontaktskjema',
-          to: 'post@fysi.no',
-          botcheck: values.botcheck || '' // Honeypot field for spam protection
-        })
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        message.success('Takk! Din melding er sendt. Vi svarer så snart som mulig.');
-        form.resetFields();
-      } else {
-        throw new Error(data.message || 'Noe gikk galt');
-      }
-    } catch (error) {
-      message.error('Beklager, noe gikk galt. Prøv igjen eller send e-post direkte til post@fysi.no');
-      console.error('Form submission error:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="content">
       <Head>
@@ -72,92 +28,23 @@ export default function Kontakt() {
             <div>
               <Title level={3} style={{ marginBottom: 8 }}>
                 <MailOutlined style={{ marginRight: 12, color: '#0066CC' }} />
-                Send oss en melding
+                Send oss en e-post
               </Title>
               <Paragraph style={{ fontSize: 16, lineHeight: 1.8, marginBottom: 24 }}>
                 Har du tanker om hvordan vi kan forbedre oss? Vil du bli en del av fagformidlingen vi utøver? 
-                Ønsker du å sponse Fysi podkast? Fyll ut skjemaet under, så svarer vi så snart som mulig.
+                Ønsker du å sponse Fysi podkast? Send oss en e-post, så svarer vi så snart som mulig.
               </Paragraph>
 
-              <Form
-                form={form}
-                layout="vertical"
-                onFinish={handleSubmit}
-                requiredMark="optional"
-                style={{ marginTop: 24 }}
+              <Button 
+                type="primary" 
+                size="large" 
+                icon={<MailOutlined />}
+                href="mailto:post@fysi.no"
+                block
+                style={{ marginTop: 16 }}
               >
-                <Form.Item
-                  label="Navn"
-                  name="name"
-                  rules={[{ required: true, message: 'Vennligst skriv inn ditt navn' }]}
-                >
-                  <Input size="large" placeholder="Ola Nordmann" />
-                </Form.Item>
-
-                <Form.Item
-                  label="E-post"
-                  name="email"
-                  rules={[
-                    { required: true, message: 'Vennligst skriv inn din e-post' },
-                    { type: 'email', message: 'Vennligst skriv inn en gyldig e-postadresse' }
-                  ]}
-                >
-                  <Input size="large" placeholder="ola@example.com" />
-                </Form.Item>
-
-                <Form.Item
-                  label="Telefon (valgfritt)"
-                  name="phone"
-                >
-                  <Input size="large" placeholder="+47 123 45 678" />
-                </Form.Item>
-
-                <Form.Item
-                  label="Emne"
-                  name="subject"
-                  rules={[{ required: true, message: 'Vennligst skriv inn et emne' }]}
-                >
-                  <Input size="large" placeholder="Hva gjelder det?" />
-                </Form.Item>
-
-                <Form.Item
-                  label="Melding"
-                  name="message"
-                  rules={[{ required: true, message: 'Vennligst skriv en melding' }]}
-                >
-                  <TextArea 
-                    rows={6} 
-                    placeholder="Skriv din melding her..."
-                    showCount
-                    maxLength={2000}
-                  />
-                </Form.Item>
-
-                {/* Honeypot field for spam protection - hidden from users */}
-                <Form.Item name="botcheck" style={{ display: 'none' }}>
-                  <Input />
-                </Form.Item>
-
-                <Form.Item>
-                  <Button 
-                    type="primary" 
-                    size="large" 
-                    htmlType="submit"
-                    loading={loading}
-                    icon={<SendOutlined />}
-                    block
-                  >
-                    Send melding
-                  </Button>
-                </Form.Item>
-              </Form>
-
-              <Paragraph style={{ fontSize: 14, color: '#718096', marginTop: 16 }}>
-                Alternativt kan du sende e-post direkte til:{' '}
-                <a href="mailto:post@fysi.no" style={{ color: '#0066CC' }}>
-                  post@fysi.no
-                </a>
-              </Paragraph>
+                Send e-post til post@fysi.no
+              </Button>
             </div>
 
             <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: 32, marginTop: 16 }}>
