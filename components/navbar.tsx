@@ -1,6 +1,6 @@
 // Navbar.js
 import { useState } from 'react';
-import { AudioOutlined, HomeOutlined, TeamOutlined, MailOutlined, ExperimentOutlined } from '@ant-design/icons';
+import { AudioOutlined, HomeOutlined, TeamOutlined, MailOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Menu } from 'antd';
 import router from 'next/router';
@@ -15,11 +15,6 @@ const items: MenuProps['items'] = [
     label: 'Arkiv',
     key: '/arkiv',
     icon: <AudioOutlined />,
-  },
-  {
-    label: 'FysiKI',
-    key: '/fysi-ki',
-    icon: <ExperimentOutlined />,
   },
   {
     label: 'Om oss',
