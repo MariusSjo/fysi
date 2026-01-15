@@ -6,7 +6,7 @@ import { Layout as Lay, ConfigProvider, Row, Col, Space, Divider } from 'antd';
 import { FacebookOutlined, InstagramOutlined } from '@ant-design/icons';
 import Head from 'next/head';
 import { Typography } from 'antd';
-const { Paragraph, Link } = Typography;
+const { Paragraph, Link, Title } = Typography;
 
 const { Header, Content, Footer } = Lay;
 
