@@ -1,8 +1,7 @@
 import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
-import { Card, Typography, Input, Row, Col, Badge, Tag } from 'antd';
-import { SearchOutlined, FireOutlined } from '@ant-design/icons';
+import { Card, Typography, Input } from 'antd';
 import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
 import React, { useEffect, useState } from 'react';
@@ -17,10 +16,10 @@ function EpisodeList({ episodes }: any) {
   }
 
   function checkTitle(title: string): string {
-    if (title.length < 85) {
+    if (title.length < 70) {
       return title;
     }
-    return title.substring(0, 82) + '...';
+    return title.substring(0, 67) + '...';
   }
 
   function filterEpisodes(e: React.ChangeEvent<HTMLInputElement>) {
@@ -28,98 +27,34 @@ function EpisodeList({ episodes }: any) {
   }
 
   return (
-    <Space className="content" direction="vertical" size="large" style={{ display: 'flex' }}>
+    <Space className="content" direction="vertical" size="middle" style={{ display: 'flex' }}>
       <Head>
-        <title>Fysi - Arkiv</title>
-        <meta name="description" content="Søk gjennom alle Fysi podcast episoder" />
+        <title>Arkiv</title>
       </Head>
-      <div style={{ paddingTop: 32 }}>
-        <Title level={1} style={{ marginBottom: 8 }}>Podcast Arkiv</Title>
-        <Paragraph style={{ fontSize: 16, color: '#4A5568' }}>
-          Bla gjennom alle våre episoder eller søk etter spesifikke tema
-        </Paragraph>
-      </div>
-      
-      <Input
-        id='search-button'
-        placeholder="Søk etter episoder, gjester eller tema..."
-        prefix={<SearchOutlined style={{ color: '#0066CC', fontSize: 18 }} />}
-        onChange={(e) => filterEpisodes(e)}
-        size="large"
-        style={{
-          maxWidth: 600,
-          borderRadius: 8,
-          padding: '12px 20px',
-          fontSize: 16
-        }}
-        allowClear
-      />
-      
-      <Row gutter={[24, 32]} style={{ marginTop: 24 }}>
+      <Title style={{ paddingTop: 20 }}>Episoder</Title>
+      <Search placeholder="Søk på en podcastepisode 🔈" id='search-button' style={{ paddingLeft: 20, paddingRight: 20 }} onChange={(e)=> filterEpisodes(e)} enterButton="Search" size="large" />
+      <Space
+        size="middle"
+        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
         {episodes &&
-          filtered.map((episode: any, index: number) => {
-            const isNew = index < 3; // Mark first 3 episodes as new
+          filtered.map((episode: any) => {
             return (
-              <Col xs={24} sm={12} md={8} lg={6} key={episode.slug} style={{ display: 'flex' }}>
-                <Link href={episode.slug} style={{ width: '100%', display: 'flex' }}>
-                  <Badge.Ribbon 
-                    text={isNew ? "NY" : null} 
-                    color="#00A86B"
-                    style={{ display: isNew ? 'block' : 'none' }}
-                  >
-                    <Card
-                      hoverable
-                      style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}
-                      bodyStyle={{ flex: 1, display: 'flex', flexDirection: 'column' }}
-                      cover={
-                        <img 
-                          alt={episode.title} 
-                          src={urlFor(episode.image).url()}
-                          style={{ 
-                            width: '100%', 
-                            height: 'auto',
-                            display: 'block'
-                          }}
-                        />
-                      }
-                    >
-                      <Meta
-                        title={
-                          <div style={{ 
-                            fontSize: 18, 
-                            fontWeight: 600,
-                            lineHeight: 1.5,
-                            color: '#2C3E50',
-                            marginBottom: 8,
-                            wordWrap: 'break-word',
-                            overflowWrap: 'break-word',
-                            whiteSpace: 'normal',
-                            overflow: 'visible'
-                          }}>
-                            {episode.title}
-                          </div>
-                        }
-                        description={
-                          <Paragraph 
-                            ellipsis={{ rows: 3 }} 
-                            style={{ 
-                              marginTop: 0, 
-                              color: '#4A5568',
-                              fontSize: 14,
-                              lineHeight: 1.6
-                            }}
-                          >
-                            {episode.description || 'Klikk for å lytte til episoden'}
-                          </Paragraph>
-                        }
-                      />
-                    </Card>
-                  </Badge.Ribbon>
+              <div key={episode.slug}>
+                <Link href={episode.slug}>
+                  <Card
+                    hoverable
+                    style={{ width: 300, minHeight: '400px' }}
+                    cover={<img alt={episode.title} src={urlFor(episode.image).url()} />}>
+                    <Meta
+                      style={{ color: '#fffff2', fontSize: '16' }}
+                      description={checkTitle(episode.title)}
+                    />
+                  </Card>
                 </Link>
-              </Col>
+              </div>
             );
           })}
-      </Row>
+      </Space>
     </Space>
   );
 }
@@ -133,9 +68,7 @@ export async function getStaticProps(context: { params: { page?: 0 | undefined }
       "description": Description, 
       "slug": slug.current,
       "guest": guest[] -> {image},
-      "image": PosterImage,
-      releaseDate,
-      _createdAt
+      "image": PosterImage
     }[0...100]
   `);
   return {

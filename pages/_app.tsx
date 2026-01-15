@@ -9,14 +9,11 @@ import { clarity } from 'react-microsoft-clarity';
 export default function App({ Component, pageProps }: AppProps) {
   require('dotenv').config();
   const router = useRouter()
-  
   useEffect(() => {
-    // Only initialize Clarity if user has accepted cookies
-    const consent = localStorage.getItem('cookie-consent');
-    if (consent === 'accepted' && !window.location.host.includes('localhost')) {
+    if (!window.location.host.includes('localhost')) {
       clarity.init(`${process.env.NEXT_PUBLIC_CLARITY}`);
     }
-  }, [])
+  },)
 
   return <Layout>
     <Component {...pageProps} />
