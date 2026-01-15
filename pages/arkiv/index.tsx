@@ -71,21 +71,15 @@ function EpisodeList({ episodes }: any) {
                       hoverable
                       style={{ height: '100%' }}
                       cover={
-                        <div style={{ 
-                          height: '200px', 
-                          overflow: 'hidden',
-                          background: '#f0f0f0'
-                        }}>
-                          <img 
-                            alt={episode.title} 
-                            src={urlFor(episode.image).width(400).height(200).fit('fill').url()}
-                            style={{ 
-                              width: '100%', 
-                              height: '100%', 
-                              objectFit: 'cover'
-                            }}
-                          />
-                        </div>
+                        <img 
+                          alt={episode.title} 
+                          src={urlFor(episode.image).url()}
+                          style={{ 
+                            width: '100%', 
+                            height: 'auto',
+                            display: 'block'
+                          }}
+                        />
                       }
                     >
                       <Meta
