@@ -85,24 +85,22 @@ function EpisodeList({ episodes }: any) {
                       <Meta
                         title={
                           <span style={{ 
-                            fontSize: 16, 
-                            fontWeight: 500,
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden',
-                            minHeight: '48px'
+                            fontSize: 18, 
+                            fontWeight: 600,
+                            lineHeight: 1.4,
+                            color: '#2C3E50'
                           }}>
                             {episode.title}
                           </span>
                         }
                         description={
                           <Paragraph 
-                            ellipsis={{ rows: 2 }} 
+                            ellipsis={{ rows: 4 }} 
                             style={{ 
-                              marginTop: 8, 
+                              marginTop: 12, 
                               color: '#4A5568',
-                              minHeight: '44px'
+                              fontSize: 15,
+                              lineHeight: 1.6
                             }}
                           >
                             {episode.description || 'Klikk for å lytte til episoden'}
