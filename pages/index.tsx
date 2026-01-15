@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Carousel, Avatar,Badge, Space, Typography } from 'antd';
+import { Card, Carousel, Space, Typography } from 'antd';
 import client from '@/client';
 import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
@@ -90,20 +90,6 @@ function Index({ episodes }: any) {
               );
             })}
         </Space>
-        <div style={{ marginTop: '20px', display: 'flex', maxWidth:'1030px',margin: 'auto' }}>
-        <Link href="/fysi-ki">
-        <Space direction="vertical" size="middle" style={{ width: '100%' }}>
-    <Badge.Ribbon text="Ny!">
-      <Card title="Prøv ut Fysi ki" size="small">
-      <Meta
-                 avatar={<Avatar  src={'/fysi_gpt.png'} />}
-                description="Den kan diagnostisere og opprette treningsprogram. Her er det viktig å vite at den er i Betafase og burde kun brukes i samspill med helsepersonell."
-              />
-      </Card>
-    </Badge.Ribbon>
-    </Space>
-    </Link>
-      </div>
         <Title style={{ textAlign: 'left', paddingTop: '3%' }}>
           Sjekk oss ut på sosiale medier:
         </Title>
