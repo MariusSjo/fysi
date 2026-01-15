@@ -18,5 +18,7 @@ describe('template spec', () => {
     cy.get('.ant-card').should('have.length.at.least', 1)
     cy.wait(800)
     cy.contains('Kontakt oss').click()
+    cy.wait(800)
+    cy.contains('Kontakt oss').should('be.visible')
   })
 })
