@@ -77,11 +77,24 @@ export default function OmOss({ physiotherapists }: any) {
                       hoverable
                       style={{ height: '100%' }}
                       cover={
-                        <img
-                          alt={physiotherapist.Name}
-                          src={urlFor(physiotherapist.HostImage).width(300).height(300).fit('fill').url()}
-                          style={{ height: 300, objectFit: 'cover' }}
-                        />
+                        <div style={{ 
+                          height: '300px', 
+                          overflow: 'hidden',
+                          background: '#f0f0f0',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}>
+                          <img
+                            alt={physiotherapist.Name}
+                            src={urlFor(physiotherapist.HostImage).width(300).height(300).fit('fill').url()}
+                            style={{ 
+                              width: '100%', 
+                              height: '100%', 
+                              objectFit: 'contain'
+                            }}
+                          />
+                        </div>
                       }
                     >
                       <Meta
