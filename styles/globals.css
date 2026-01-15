@@ -45,8 +45,14 @@ body {
 
 .ant-card-cover img {
   object-fit: cover;
-  height: 200px;
   width: 100%;
+}
+
+.ant-card-meta-title {
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  color: #2C3E50 !important;
+  line-height: 1.4 !important;
 }
 
 /* Consistent Image Sizing for Sanity Images */

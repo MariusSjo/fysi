@@ -2,6 +2,7 @@ import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
 import { Card, Typography, Input } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
 import React, { useEffect, useState } from 'react';
@@ -16,10 +17,10 @@ function EpisodeList({ episodes }: any) {
   }
 
   function checkTitle(title: string): string {
-    if (title.length < 70) {
+    if (title.length < 85) {
       return title;
     }
-    return title.substring(0, 67) + '...';
+    return title.substring(0, 82) + '...';
   }
 
   function filterEpisodes(e: React.ChangeEvent<HTMLInputElement>) {
@@ -27,15 +28,36 @@ function EpisodeList({ episodes }: any) {
   }
 
   return (
-    <Space className="content" direction="vertical" size="middle" style={{ display: 'flex' }}>
+    <Space className="content" direction="vertical" size="large" style={{ display: 'flex' }}>
       <Head>
-        <title>Arkiv</title>
+        <title>Fysi - Arkiv</title>
+        <meta name="description" content="Søk gjennom alle Fysi podcast episoder" />
       </Head>
-      <Title style={{ paddingTop: 20 }}>Episoder</Title>
-      <Search placeholder="Søk på en podcastepisode 🔈" id='search-button' style={{ paddingLeft: 20, paddingRight: 20 }} onChange={(e)=> filterEpisodes(e)} enterButton="Search" size="large" />
+      <div style={{ paddingTop: 32 }}>
+        <Title level={1} style={{ marginBottom: 8 }}>Podcast Arkiv</Title>
+        <Paragraph style={{ fontSize: 16, color: '#4A5568' }}>
+          Bla gjennom alle våre episoder eller søk etter spesifikke tema
+        </Paragraph>
+      </div>
+      
+      <Input
+        id='search-button'
+        placeholder="Søk etter episoder, gjester eller tema..."
+        prefix={<SearchOutlined style={{ color: '#0066CC', fontSize: 18 }} />}
+        onChange={(e) => filterEpisodes(e)}
+        size="large"
+        style={{
+          maxWidth: 600,
+          borderRadius: 8,
+          padding: '12px 20px',
+          fontSize: 16
+        }}
+        allowClear
+      />
+      
       <Space
-        size="middle"
-        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+        size="large"
+        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', gap: '24px' }}>
         {episodes &&
           filtered.map((episode: any) => {
             return (
@@ -43,11 +65,21 @@ function EpisodeList({ episodes }: any) {
                 <Link href={episode.slug}>
                   <Card
                     hoverable
-                    style={{ width: 300, minHeight: '400px' }}
-                    cover={<img alt={episode.title} src={urlFor(episode.image).url()} />}>
+                    style={{ width: 360, minHeight: '480px' }}
+                    cover={
+                      <img 
+                        alt={episode.title} 
+                        src={urlFor(episode.image).width(360).height(240).fit('fill').url()}
+                        style={{ height: '240px', objectFit: 'cover' }}
+                      />
+                    }>
                     <Meta
-                      style={{ color: '#fffff2', fontSize: '16' }}
-                      description={checkTitle(episode.title)}
+                      title={<span style={{ fontSize: 18, fontWeight: 500 }}>{checkTitle(episode.title)}</span>}
+                      description={
+                        <Paragraph ellipsis={{ rows: 2 }} style={{ marginTop: 8, color: '#4A5568' }}>
+                          {episode.description || 'Klikk for å lytte til episoden'}
+                        </Paragraph>
+                      }
                     />
                   </Card>
                 </Link>

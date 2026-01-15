@@ -43,7 +43,7 @@ const Episode = ({ episode }: any) => {
                   size="large"
                   maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
                 >
-                  {guest && <Avatar size={80} src={urlFor(guest?.image).width(120).height(120).fit('crop').url()} />}
+                  {guest && <Avatar size={80} src={urlFor(guest?.image).width(120).height(120).fit('fill').url()} />}
                 </Avatar.Group>
                 <br /><Paragraph>{guest?.Name}</Paragraph>
               </div>
@@ -57,7 +57,7 @@ const Episode = ({ episode }: any) => {
                     size="large"
                     maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf', cursor: 'pointer' }}
                   >
-                    {<Avatar size={80} src={urlFor(host?.HostImage).width(120).height(120).fit('crop').url()} />}
+                    {<Avatar size={80} src={urlFor(host?.HostImage).width(120).height(120).fit('fill').url()} />}
                   </Avatar.Group>
                   <br /><Paragraph>{host?.Name}</Paragraph>
                 </div>)

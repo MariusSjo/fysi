@@ -83,7 +83,7 @@ function Index({ episodes }: any) {
                       cover={
                         <img 
                           alt={episode.title} 
-                          src={urlFor(episode.image).width(300).height(200).fit('crop').url()} 
+                          src={urlFor(episode.image).width(300).height(200).fit('fill').url()} 
                           className="episode-card-image"
                         />
                       }>
