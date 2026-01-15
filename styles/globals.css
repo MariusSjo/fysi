@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -10,35 +10,160 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background-color: #F8FAFB;
+  color: #2C3E50;
 }
 
 .content{
   margin-left: auto;
   margin-right: auto;
   max-width: 1200px;
+  padding: 20px;
 }
 
 .ant-card-meta-description{
-  color: #fffff2 !important;
-  font-size: 18;
+  color: #4A5568 !important;
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 .ant-image-mask{
   pointer-events: none !important;
 }
 
+/* Modern Card Styling */
+.ant-card {
+  border: 1px solid #E2E8F0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
 
+.ant-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 102, 204, 0.12);
+  transform: translateY(-2px);
+}
+
+.ant-card-cover img {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+
+/* Consistent Image Sizing for Sanity Images */
+.episode-card-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.guest-avatar-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Cookie Consent Banner */
+.cookie-consent {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 24px;
+  max-width: 600px;
+  width: calc(100% - 40px);
+  z-index: 1000;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.cookie-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.cookie-text {
+  flex: 1;
+  min-width: 250px;
+}
+
+.cookie-text p {
+  margin: 0;
+  color: #4A5568;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cookie-text strong {
+  color: #2C3E50;
+  font-size: 16px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.cookie-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* Hero Section Styling */
+.hero-section {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+.hero-overlay {
+  position: absolute;
+  z-index: 2;
+  bottom: 40px;
+  left: 40px;
+  max-width: 600px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.hero-overlay h1 {
+  color: #0066CC;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.hero-overlay p {
+  color: #4A5568;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
 .responsive{
   display: flex; 
   margin: auto;
-  gap: 50px
-
+  gap: 50px;
 }
+
 .responsive > *{
   padding-top: 50px; 
 }
-
-
 
 @media (max-width: 950px) {
   .desktop{
@@ -51,6 +176,31 @@ body {
   .responsive > *{
     padding-top: 5px; 
   }
+  
+  .hero-overlay {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    padding: 20px;
+  }
+  
+  .cookie-consent {
+    bottom: 10px;
+    width: calc(100% - 20px);
+  }
+  
+  .cookie-content {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .cookie-actions {
+    width: 100%;
+  }
+  
+  .cookie-actions button {
+    flex: 1;
+  }
 }
 
 .ant-btn-lg{
@@ -61,4 +211,36 @@ body {
   .responsive{
     flex-direction: column;
   }
+}
+
+/* Professional Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* Navigation Styling */
+.navBarMenu {
+  background: white !important;
+  border-bottom: 1px solid #E2E8F0;
+}
+
+/* Footer Styling */
+.footer {
+  background: #2C3E50 !important;
+  color: #E2E8F0 !important;
+  margin-top: 60px;
+  padding: 40px 20px !important;
+}
+
+.footer p, .footer a {
+  color: #E2E8F0 !important;
+}
+
+.footer a:hover {
+  color: #0066CC !important;
 }

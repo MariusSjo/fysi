@@ -1,5 +1,6 @@
 // components/layout.js
 import Navbar from "./navbar"
+import CookieConsent from "./CookieConsent"
 import React from 'react';
 import { Layout as Lay, ConfigProvider, Row, Col, Space, Divider } from 'antd';
 import { FacebookOutlined, InstagramOutlined } from '@ant-design/icons';
@@ -16,16 +17,19 @@ export default function Layout({ children }: any) {
             <ConfigProvider
                 theme={{
                     "token": {
-                        "colorPrimary": "#4d76f0",
-                        "colorInfo": "#4d76f0",
-                        "colorTextBase": "#fffff2",
-                        "colorBgBase": "#1c2848",
-                        "fontSize": 18,
-                        "fontSizeHeading1": 26,
-                        "fontSizeHeading2": 25,
-                        "borderRadius": 16,
+                        "colorPrimary": "#0066CC",
+                        "colorInfo": "#0066CC",
+                        "colorSuccess": "#00A86B",
+                        "colorTextBase": "#2C3E50",
+                        "colorBgBase": "#FFFFFF",
+                        "colorBgLayout": "#F8FAFB",
+                        "fontSize": 16,
+                        "fontSizeHeading1": 32,
+                        "fontSizeHeading2": 28,
+                        "fontSizeHeading3": 24,
+                        "borderRadius": 8,
                         "wireframe": false,
-                        fontFamily: 'PT Sans'
+                        fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
                     }
                 }}
             >
@@ -59,6 +63,7 @@ export default function Layout({ children }: any) {
                     </Space>
                     </Footer>
                 </Lay>
+                <CookieConsent />
             </ConfigProvider>
         </>
     )
