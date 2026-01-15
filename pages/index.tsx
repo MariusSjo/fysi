@@ -91,22 +91,23 @@ function Index({ episodes }: any) {
                       }>
                       <Meta
                         title={
-                          <span style={{ 
+                          <div style={{ 
                             fontSize: 18, 
                             fontWeight: 600,
-                            lineHeight: 1.4,
-                            color: '#2C3E50'
+                            lineHeight: 1.5,
+                            color: '#2C3E50',
+                            marginBottom: 8
                           }}>
                             {episode.title}
-                          </span>
+                          </div>
                         }
                         description={
                           <Paragraph 
-                            ellipsis={{ rows: 3 }} 
+                            ellipsis={{ rows: 2 }} 
                             style={{ 
-                              marginTop: 12, 
+                              marginTop: 0, 
                               color: '#4A5568',
-                              fontSize: 15,
+                              fontSize: 14,
                               lineHeight: 1.6
                             }}
                           >
