@@ -73,11 +73,12 @@ function Index({ episodes }: any) {
           {episodes &&
             episodes.map((episode: any) => {
               return (
-                <Col xs={24} sm={12} md={8} key={episode.slug}>
-                  <Link href={episode.slug}>
+                <Col xs={24} sm={12} md={8} key={episode.slug} style={{ display: 'flex' }}>
+                  <Link href={episode.slug} style={{ width: '100%', display: 'flex' }}>
                     <Card
                       hoverable
-                      style={{ height: '100%' }}
+                      style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}
+                      bodyStyle={{ flex: 1, display: 'flex', flexDirection: 'column' }}
                       cover={
                         <img 
                           alt={episode.title} 

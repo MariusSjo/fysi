@@ -60,8 +60,8 @@ function EpisodeList({ episodes }: any) {
           filtered.map((episode: any, index: number) => {
             const isNew = index < 3; // Mark first 3 episodes as new
             return (
-              <Col xs={24} sm={12} md={8} lg={6} key={episode.slug}>
-                <Link href={episode.slug}>
+              <Col xs={24} sm={12} md={8} lg={6} key={episode.slug} style={{ display: 'flex' }}>
+                <Link href={episode.slug} style={{ width: '100%', display: 'flex' }}>
                   <Badge.Ribbon 
                     text={isNew ? "NY" : null} 
                     color="#00A86B"
@@ -69,7 +69,8 @@ function EpisodeList({ episodes }: any) {
                   >
                     <Card
                       hoverable
-                      style={{ height: '100%' }}
+                      style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}
+                      bodyStyle={{ flex: 1, display: 'flex', flexDirection: 'column' }}
                       cover={
                         <img 
                           alt={episode.title} 
