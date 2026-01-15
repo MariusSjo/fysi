@@ -1,8 +1,8 @@
 import client from '../../client';
 import imageUrlBuilder from '@sanity/image-url';
 import Head from 'next/head';
-import { Card, Typography, Input } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { Card, Typography, Input, Row, Col, Badge, Tag } from 'antd';
+import { SearchOutlined, FireOutlined } from '@ant-design/icons';
 import { Space } from 'antd';
 const { Title, Paragraph } = Typography;
 import React, { useEffect, useState } from 'react';
@@ -55,38 +55,73 @@ function EpisodeList({ episodes }: any) {
         allowClear
       />
       
-      <Space
-        size="large"
-        style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'flex-start', gap: '24px' }}>
+      <Row gutter={[24, 32]} style={{ marginTop: 24 }}>
         {episodes &&
-          filtered.map((episode: any) => {
+          filtered.map((episode: any, index: number) => {
+            const isNew = index < 3; // Mark first 3 episodes as new
             return (
-              <div key={episode.slug}>
+              <Col xs={24} sm={12} md={8} lg={6} key={episode.slug}>
                 <Link href={episode.slug}>
-                  <Card
-                    hoverable
-                    style={{ width: 360, minHeight: '480px' }}
-                    cover={
-                      <img 
-                        alt={episode.title} 
-                        src={urlFor(episode.image).width(360).height(240).fit('fill').url()}
-                        style={{ height: '240px', objectFit: 'cover' }}
-                      />
-                    }>
-                    <Meta
-                      title={<span style={{ fontSize: 18, fontWeight: 500 }}>{checkTitle(episode.title)}</span>}
-                      description={
-                        <Paragraph ellipsis={{ rows: 2 }} style={{ marginTop: 8, color: '#4A5568' }}>
-                          {episode.description || 'Klikk for å lytte til episoden'}
-                        </Paragraph>
+                  <Badge.Ribbon 
+                    text={isNew ? "NY" : null} 
+                    color="#00A86B"
+                    style={{ display: isNew ? 'block' : 'none' }}
+                  >
+                    <Card
+                      hoverable
+                      style={{ height: '100%' }}
+                      cover={
+                        <div style={{ 
+                          height: '200px', 
+                          overflow: 'hidden',
+                          background: '#f0f0f0'
+                        }}>
+                          <img 
+                            alt={episode.title} 
+                            src={urlFor(episode.image).width(400).height(200).fit('fill').url()}
+                            style={{ 
+                              width: '100%', 
+                              height: '100%', 
+                              objectFit: 'cover'
+                            }}
+                          />
+                        </div>
                       }
-                    />
-                  </Card>
+                    >
+                      <Meta
+                        title={
+                          <span style={{ 
+                            fontSize: 16, 
+                            fontWeight: 500,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            minHeight: '48px'
+                          }}>
+                            {episode.title}
+                          </span>
+                        }
+                        description={
+                          <Paragraph 
+                            ellipsis={{ rows: 2 }} 
+                            style={{ 
+                              marginTop: 8, 
+                              color: '#4A5568',
+                              minHeight: '44px'
+                            }}
+                          >
+                            {episode.description || 'Klikk for å lytte til episoden'}
+                          </Paragraph>
+                        }
+                      />
+                    </Card>
+                  </Badge.Ribbon>
                 </Link>
-              </div>
+              </Col>
             );
           })}
-      </Space>
+      </Row>
     </Space>
   );
 }
@@ -100,7 +135,9 @@ export async function getStaticProps(context: { params: { page?: 0 | undefined }
       "description": Description, 
       "slug": slug.current,
       "guest": guest[] -> {image},
-      "image": PosterImage
+      "image": PosterImage,
+      releaseDate,
+      _createdAt
     }[0...100]
   `);
   return {

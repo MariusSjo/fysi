@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Carousel, Space, Typography } from 'antd';
+import { Card, Carousel, Space, Typography, Row, Col } from 'antd';
 import client from '@/client';
 import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
@@ -68,34 +68,54 @@ function Index({ episodes }: any) {
         </Carousel>
       </div>
       <div className="content">
-        <Title level={2} style={{ textAlign: 'left', marginBottom: '32px' }}> De nyeste episodene </Title>
-        <Space
-          size="large"
-          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+        <Title level={2} style={{ textAlign: 'left', marginBottom: '32px', marginTop: '48px' }}> De nyeste episodene </Title>
+        <Row gutter={[24, 24]}>
           {episodes &&
             episodes.map((episode: any) => {
               return (
-                <div key={episode.slug}>
-                  <Link href={episode.slug} key={episode.slug}>
+                <Col xs={24} sm={12} md={8} key={episode.slug}>
+                  <Link href={episode.slug}>
                     <Card
                       hoverable
-                      style={{ width: 300, minHeight: 420 }}
+                      style={{ height: '100%' }}
                       cover={
-                        <img 
-                          alt={episode.title} 
-                          src={urlFor(episode.image).width(300).height(200).fit('fill').url()} 
-                          className="episode-card-image"
-                        />
+                        <div style={{ 
+                          height: '200px', 
+                          overflow: 'hidden',
+                          background: '#f0f0f0'
+                        }}>
+                          <img 
+                            alt={episode.title} 
+                            src={urlFor(episode.image).width(400).height(200).fit('fill').url()} 
+                            style={{ 
+                              width: '100%', 
+                              height: '100%', 
+                              objectFit: 'cover'
+                            }}
+                          />
+                        </div>
                       }>
                       <Meta
-                        description={checkTitle(episode.title)}
+                        title={
+                          <span style={{ 
+                            fontSize: 16, 
+                            fontWeight: 500,
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2,
+                            WebkitBoxOrient: 'vertical',
+                            overflow: 'hidden',
+                            minHeight: '48px'
+                          }}>
+                            {episode.title}
+                          </span>
+                        }
                       />
                     </Card>
                   </Link>
-                </div>
+                </Col>
               );
             })}
-        </Space>
+        </Row>
         <Title level={2} style={{ textAlign: 'left', marginTop: '64px', marginBottom: '32px' }}>
           Følg oss på sosiale medier
         </Title>
