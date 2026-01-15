@@ -89,14 +89,17 @@ function EpisodeList({ episodes }: any) {
                             fontWeight: 600,
                             lineHeight: 1.5,
                             color: '#2C3E50',
-                            marginBottom: 8
+                            marginBottom: 8,
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            hyphens: 'auto'
                           }}>
                             {episode.title}
                           </div>
                         }
                         description={
                           <Paragraph 
-                            ellipsis={{ rows: 4 }} 
+                            ellipsis={{ rows: 3 }} 
                             style={{ 
                               marginTop: 0, 
                               color: '#4A5568',
