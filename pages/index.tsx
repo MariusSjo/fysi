@@ -99,7 +99,8 @@ function Index({ episodes }: any) {
                             marginBottom: 8,
                             wordWrap: 'break-word',
                             overflowWrap: 'break-word',
-                            hyphens: 'auto'
+                            whiteSpace: 'normal',
+                            overflow: 'visible'
                           }}>
                             {episode.title}
                           </div>

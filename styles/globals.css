@@ -261,3 +261,10 @@ p {
   color: #0066CC !important;
   transform: translateY(-2px);
 }
+
+/* Fix for Card Meta Title Overflow */
+.ant-card-meta-title {
+  overflow: visible !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+}
