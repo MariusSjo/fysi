@@ -4,7 +4,7 @@ describe('template spec', () => {
     cy.wait(800)
     cy.contains('Hjem').click()
     cy.wait(800)
-    cy.get(':nth-child(1) > :nth-child(1) > a > .ant-card > .ant-card-cover > img').click()
+    cy.get('.ant-card').first().click()
     cy.wait(800)
     cy.contains('Arkiv').click()
     cy.wait(800)
