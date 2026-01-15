@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Carousel, Space, Typography } from 'antd';
+import { Card, Carousel, Space, Typography, Row, Col } from 'antd';
 import client from '@/client';
 import Link from 'next/link';
 import imageUrlBuilder from '@sanity/image-url';
@@ -48,50 +48,86 @@ function checkTitle(title: string): string {
 function Index({ episodes }: any) {
   return (
     <>
-      <div style={{ position: 'relative' }}>
+      <div className="hero-section">
         <Head>
           <title>Fysi - Hjem</title>
+          <meta name="description" content="Fysi podcast - Kunnskapsformidling for fysioterapeuter og helsepersonell" />
         </Head>
-        <div style={{ position: 'absolute', zIndex: 2, bottom: '5%', margin: 0, left: '5%' }}>
-          <Title style={{ fontSize: '1.7em' }}>Fysi podcast</Title>
-          <Paragraph className="desktop">
-            Medical & health <br />
-            Podcast og kunnskapsformidling for fysioterapeuter og helsepersonell.
+        <div className="hero-overlay">
+          <Title level={1}>Fysi podcast</Title>
+          <Paragraph>
+            Kunnskapsformidling for fysioterapeuter og helsepersonell. 
+            Få innsikt i de nyeste forskningsresultatene og beste praksis innen fysioterapi.
           </Paragraph>
         </div>
 
-        <Carousel autoplay effect="fade">
-          <img src="/hero1.png" />
-          <img src="/hero2.png" />
-          <img src="/hero3.png" />
+        <Carousel autoplay effect="fade" style={{ maxHeight: '500px', overflow: 'hidden' }}>
+          <div><img src="/hero1.png" alt="Fysi podcast" style={{ width: '100%', height: '500px', objectFit: 'cover' }} /></div>
+          <div><img src="/hero2.png" alt="Fysi podcast" style={{ width: '100%', height: '500px', objectFit: 'cover' }} /></div>
+          <div><img src="/hero3.png" alt="Fysi podcast" style={{ width: '100%', height: '500px', objectFit: 'cover' }} /></div>
         </Carousel>
       </div>
       <div className="content">
-        <Title style={{ textAlign: 'left', paddingTop: '3%' }}> De nyeste episodene: </Title>
-        <Space
-          size="large"
-          style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
+        <Title level={2} style={{ textAlign: 'left', marginBottom: '32px', marginTop: '48px' }}> De nyeste episodene </Title>
+        <Row gutter={[24, 24]}>
           {episodes &&
             episodes.map((episode: any) => {
               return (
-                <div key={episode.slug}>
-                  <Link href={episode.slug} key={episode.slug}>
+                <Col xs={24} sm={12} md={8} key={episode.slug} style={{ display: 'flex' }}>
+                  <Link href={episode.slug} style={{ width: '100%', display: 'flex' }}>
                     <Card
                       hoverable
-                      style={{ width: 300, minHeight: 420 }}
-                      cover={<img alt={episode.title} src={urlFor(episode.image).url()} />}>
+                      style={{ height: '100%', width: '100%', display: 'flex', flexDirection: 'column' }}
+                      bodyStyle={{ flex: 1, display: 'flex', flexDirection: 'column' }}
+                      cover={
+                        <img 
+                          alt={episode.title} 
+                          src={urlFor(episode.image).url()} 
+                          style={{ 
+                            width: '100%', 
+                            height: 'auto',
+                            display: 'block'
+                          }}
+                        />
+                      }>
                       <Meta
-                        style={{ color: '#fffff2', fontSize: '16' }}
-                        description={checkTitle(episode.title)}
+                        title={
+                          <div style={{ 
+                            fontSize: 18, 
+                            fontWeight: 600,
+                            lineHeight: 1.5,
+                            color: '#2C3E50',
+                            marginBottom: 8,
+                            wordWrap: 'break-word',
+                            overflowWrap: 'break-word',
+                            whiteSpace: 'normal',
+                            overflow: 'visible'
+                          }}>
+                            {episode.title}
+                          </div>
+                        }
+                        description={
+                          <Paragraph 
+                            ellipsis={{ rows: 3 }} 
+                            style={{ 
+                              marginTop: 0, 
+                              color: '#4A5568',
+                              fontSize: 14,
+                              lineHeight: 1.6
+                            }}
+                          >
+                            {episode.description || 'Klikk for å lytte til episoden'}
+                          </Paragraph>
+                        }
                       />
                     </Card>
                   </Link>
-                </div>
+                </Col>
               );
             })}
-        </Space>
-        <Title style={{ textAlign: 'left', paddingTop: '3%' }}>
-          Sjekk oss ut på sosiale medier:
+        </Row>
+        <Title level={2} style={{ textAlign: 'left', marginTop: '64px', marginBottom: '32px' }}>
+          Følg oss på sosiale medier
         </Title>
         <Space
           size="large"

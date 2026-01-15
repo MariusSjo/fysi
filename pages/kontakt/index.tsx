@@ -1,97 +1,82 @@
-import client from "@/client";
-import { Card, Form, Space, Typography } from "antd";
-import { Button, Input} from 'antd';
+import { Card, Space, Typography, Button } from "antd";
+import { MailOutlined, LinkedinOutlined, InstagramOutlined } from '@ant-design/icons';
 import Head from "next/head";
 
-const { Meta } = Card;
-const { Paragraph, Title } = Typography;
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 },
-};
+const { Paragraph, Title, Text } = Typography;
 
-/* eslint-disable no-template-curly-in-string */
-/* const validateMessages = {
-  required: '${label} is required!',
-  types: {
-    email: '${label} er ikke en gyldig e-postadresse!',
-    number: '${label} is not a valid number!',
-  },
-  number: {
-    range: '${label} must be between ${min} and ${max}',
-  },
-};
-
-const onFinish = (values: any) => {
-  console.log(values);
-  let subject= '['+values.user.email+']'+' '+values.user.subject
-  sendEmail(subject, values.user.message)
-};
-
-const sendEmail = (subject: string, message:string) => { 
-let data = {
-    subject,
-    message
-  }
-fetch('/api/contact', {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json, text/plain, ',
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-}).then((res) => {
-  console.log('Response received')
-  if (res.status === 200) {
-    console.log('Response succeeded!')
-  }
-})
-}
- */
-
-
-
-export default function kontakt() {
+export default function Kontakt() {
   return (
-    <Space className="content" direction="vertical" size="middle" style={{ display: 'flex', textAlign: "center", maxWidth: 800 }}>
+    <div className="content">
       <Head>
-        <title>Om oss</title>
+        <title>Fysi - Kontakt oss</title>
+        <meta name="description" content="Ta kontakt med Fysi podcast" />
       </Head>
-      <Title style={{ paddingTop: 20 }}>Episoder</Title>
-      <Paragraph>
-        Har du tanker om hvordan vi kan forbedre oss?<br /><br />
-        Vil du bli en del av fagformidlingen vi utøver?<br /><br />
-        Ønsker du å sponse Fysi podkast mot at vi annonserer på våre nettsider og podcasts?<br /><br />
+      
+      <Space direction="vertical" size="large" style={{ display: 'flex', maxWidth: 800, margin: '0 auto', paddingTop: 40 }}>
+        <div style={{ textAlign: 'center' }}>
+          <Title level={1}>Kontakt oss</Title>
+          <Paragraph style={{ fontSize: 18, color: '#4A5568' }}>
+            Vi setter pris på tilbakemeldinger og vil gjerne høre fra deg!
+          </Paragraph>
+        </div>
 
-        Send oss en <a href="mailto:post@fysi.no">e-post</a> da vel! Om lenken ikke funker kan du sende en mail til <br/> post@fysi.no
-      </Paragraph>
-      
-      
-    </Space>
+        <Card 
+          style={{ borderRadius: 12, marginTop: 32 }}
+          bodyStyle={{ padding: 40 }}
+        >
+          <Space direction="vertical" size="large" style={{ width: '100%' }}>
+            <div>
+              <Title level={3} style={{ marginBottom: 16 }}>
+                <MailOutlined style={{ marginRight: 12, color: '#0066CC' }} />
+                Send oss en e-post
+              </Title>
+              <Paragraph style={{ fontSize: 16, lineHeight: 1.8 }}>
+                Har du tanker om hvordan vi kan forbedre oss?
+              </Paragraph>
+              <Paragraph style={{ fontSize: 16, lineHeight: 1.8 }}>
+                Vil du bli en del av fagformidlingen vi utøver?
+              </Paragraph>
+              <Paragraph style={{ fontSize: 16, lineHeight: 1.8 }}>
+                Ønsker du å sponse Fysi podkast mot at vi annonserer på våre nettsider og podcasts?
+              </Paragraph>
+              
+              <Button 
+                type="primary" 
+                size="large" 
+                icon={<MailOutlined />}
+                href="mailto:post@fysi.no"
+                style={{ marginTop: 24 }}
+              >
+                post@fysi.no
+              </Button>
+            </div>
+
+            <div style={{ borderTop: '1px solid #E2E8F0', paddingTop: 32, marginTop: 16 }}>
+              <Title level={4} style={{ marginBottom: 16 }}>Følg oss på sosiale medier</Title>
+              <Space size="large">
+                <Button 
+                  type="default" 
+                  size="large" 
+                  icon={<InstagramOutlined />}
+                  href="https://www.instagram.com/fysi.no/"
+                  target="_blank"
+                >
+                  Instagram
+                </Button>
+                <Button 
+                  type="default" 
+                  size="large" 
+                  icon={<LinkedinOutlined />}
+                  href="https://www.linkedin.com/company/fysi-no/"
+                  target="_blank"
+                >
+                  LinkedIn
+                </Button>
+              </Space>
+            </div>
+          </Space>
+        </Card>
+      </Space>
+    </div>
   );
 }
-/* <Form
-        {...layout}
-        name="nest-messages"
-        onFinish={onFinish}
-        style={{ maxWidth: 600 }}
-        validateMessages={validateMessages}
-      >
-        <Form.Item name={['user', 'name']} label="Name" rules={[{ required: true }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name={['user', 'email']} label="Epost" rules={[{ type: 'email' }]}>
-          <Input />
-        </Form.Item>
-        <Form.Item name={['user', 'subject']} label="Emne">
-          <Input />
-        </Form.Item>
-        <Form.Item name={['user', 'message']} label="melding" rules={[{ required: true }]}>
-          <Input.TextArea />
-        </Form.Item>
-        <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 20 }}>
-          <Button type="primary" htmlType="submit">
-            Send e-post
-          </Button>
-        </Form.Item>
-      </Form> */
