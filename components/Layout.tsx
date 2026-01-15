@@ -44,23 +44,28 @@ export default function Layout({ children }: any) {
                                 <main>{children}</main>
                     </Content>
                     <Footer className="footer">
-                    <Space direction="vertical" size="large" style={{ display: 'flex' }}>
-                        <hr/>
-                    <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
-                    <Col  className="gutter-row" span={8}>
-                    </Col>
-                            <Col  className="gutter-row" span={8}>
-                            <Paragraph>Fysi©2019</Paragraph>
-                            </Col>
-                            <Col  className="gutter-row" span={8}>
-                                <Paragraph className="desktop">Sjekk oss ut på sosiale medier:</Paragraph>
-                                <Space split={<Divider type="vertical" />}>
-                            <Link><FacebookOutlined /> <div className="desktop">Facebook</div> </Link>
-                            <Link href="https://www.instagram.com/fysi.no/" ><InstagramOutlined /> <div className="desktop">Instagram</div></Link>
-                            </Space>
-                            </Col>
+                        <div className="content">
+                            <Row gutter={[32, 32]} align="middle" style={{ paddingTop: 20, paddingBottom: 20 }}>
+                                <Col xs={24} md={8} style={{ textAlign: 'center' }}>
+                                    <Title level={4} style={{ color: '#E2E8F0', marginBottom: 8 }}>Fysi Podcast</Title>
+                                    <Paragraph style={{ color: '#CBD5E0' }}>Kunnskap for helsepersonell</Paragraph>
+                                </Col>
+                                <Col xs={24} md={8} style={{ textAlign: 'center' }}>
+                                    <Paragraph style={{ color: '#CBD5E0', margin: 0 }}>© 2019-{new Date().getFullYear()} Fysi</Paragraph>
+                                </Col>
+                                <Col xs={24} md={8} style={{ textAlign: 'center' }}>
+                                    <Paragraph style={{ color: '#E2E8F0', marginBottom: 12 }}>Følg oss</Paragraph>
+                                    <Space size="middle">
+                                        <Link href="https://www.facebook.com/fysi0" target="_blank" className="footer-link">
+                                            <FacebookOutlined style={{ fontSize: 24 }} />
+                                        </Link>
+                                        <Link href="https://www.instagram.com/fysi.no/" target="_blank" className="footer-link">
+                                            <InstagramOutlined style={{ fontSize: 24 }} />
+                                        </Link>
+                                    </Space>
+                                </Col>
                             </Row>
-                    </Space>
+                        </div>
                     </Footer>
                 </Lay>
                 <CookieConsent />
